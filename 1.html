@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>浪漫姻緣測試</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffe6e6, #ffe6f0);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .form-container {
+      background: #fff0f5;
+      padding: 30px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+    }
+    input, select {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 300px;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e055a1;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #c2185b;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>姻緣匹配測試</h1>
+  <div class="form-container">
+    <form id="loveForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfdmahji_7HoYdx924cOX5nwadw547ZIiKsF5mC8rRVniNa3g/formResponse" method="POST" target="hidden_iframe" onsubmit="showResult();">
+      <input type="text" name="entry.1863533769" id="yourName" placeholder="你的名字" required><br>
+      <select name="entry.1590717889" id="yourSign" required>
+        <option value="">你的星座</option>
+        <option value="白羊座">白羊座</option>
+        <option value="金牛座">金牛座</option>
+        <option value="雙子座">雙子座</option>
+        <option value="巨蟹座">巨蟹座</option>
+        <option value="獅子座">獅子座</option>
+        <option value="處女座">處女座</option>
+        <option value="天秤座">天秤座</option>
+        <option value="天蠍座">天蠍座</option>
+        <option value="射手座">射手座</option>
+        <option value="摩羯座">摩羯座</option>
+        <option value="水瓶座">水瓶座</option>
+        <option value="雙魚座">雙魚座</option>
+      </select><br>
+      <input type="text" name="entry.362581893" id="partnerName" placeholder="對方的名字" required><br>
+      <select name="entry.1157670864" id="partnerSign" required>
+        <option value="">對方星座</option>
+        <option value="白羊座">白羊座</option>
+        <option value="金牛座">金牛座</option>
+        <option value="雙子座">雙子座</option>
+        <option value="巨蟹座">巨蟹座</option>
+        <option value="獅子座">獅子座</option>
+        <option value="處女座">處女座</option>
+        <option value="天秤座">天秤座</option>
+        <option value="天蠍座">天蠍座</option>
+        <option value="射手座">射手座</option>
+        <option value="摩羯座">摩羯座</option>
+        <option value="水瓶座">水瓶座</option>
+        <option value="雙魚座">雙魚座</option>
+      </select><br>
+      <input type="number" name="entry.161084291" placeholder="你的年齡" required><br>
+      <input type="number" name="entry.822226917" placeholder="對方年齡" required><br>
+      <button type="submit">提交並測試姻緣</button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const matchMessages = {
+      "獅子座_天秤座": "你們在靈魂上彼此吸引，是閃閃發光的搭檔！",
+      "雙魚座_巨蟹座": "水象星座的默契，讓你們像童話中的戀人。",
+      "白羊座_射手座": "熱情與自由的火花，讓愛情燒得正旺。",
+      "處女座_摩羯座": "你們踏實而穩定，適合一起築夢踏實。",
+      "水瓶座_雙子座": "腦波同步的你們，像是彼此心靈的知音。"
+    };
+
+    function showResult() {
+      const yourName = document.getElementById("yourName").value;
+      const partnerName = document.getElementById("partnerName").value;
+      const yourSign = document.getElementById("yourSign").value;
+      const partnerSign = document.getElementById("partnerSign").value;
+
+      const matchRate = Math.floor(Math.random() * 41) + 60;
+      const key1 = yourSign + "_" + partnerSign;
+      const key2 = partnerSign + "_" + yourSign;
+      const message = matchMessages[key1] || matchMessages[key2] || "你們有緣千里來相會，緣份值得期待！";
+
+      const resultText = `<p><strong>${yourName}</strong> 與 <strong>${partnerName}</strong> 的姻緣匹配度是：<strong>${matchRate}%</strong><br>${message}</p>`;
+      document.getElementById("result").innerHTML = resultText;
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>
